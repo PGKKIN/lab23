@@ -1,66 +1,407 @@
-#include <windows.h>
+MyForm.h
 
-/* This is where all the input to the window goes to */
-LRESULT CALLBACK WndProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lParam) {
-	switch(Message) {
-		
-		/* Upon destruction, tell the main thread to stop */
-		case WM_DESTROY: {
-			PostQuitMessage(0);
-			break;
+#pragma once
+
+
+
+namespace Calculator {
+
+
+
+	using namespace System;
+
+	using namespace System::ComponentModel;
+
+	using namespace System::Collections;
+
+	using namespace System::Windows::Forms;
+
+	using namespace System::Data;
+
+	using namespace System::Drawing;
+
+
+
+	/// <summary>
+
+	/// Summary for MyForm
+
+	/// </summary>
+
+	public ref class MyForm : public System::Windows::Forms::Form
+
+	{
+
+	public:
+
+		MyForm(void)
+
+		{
+
+			InitializeComponent();
+
+			//
+
+			//TODO: Add the constructor code here
+
+			//
+
 		}
-		
-		/* All other messages (a lot of them) are processed using default procedures */
-		default:
-			return DefWindowProc(hwnd, Message, wParam, lParam);
+
+
+
+	protected:
+
+		/// <summary>
+
+		/// Clean up any resources being used.
+
+		/// </summary>
+
+		~MyForm()
+
+		{
+
+			if (components)
+
+			{
+
+				delete components;
+
+			}
+
+		}
+
+	private: System::Windows::Forms::Label^ label1;
+
+	private: System::Windows::Forms::TextBox^ textBox1;
+
+	private: System::Windows::Forms::TextBox^ textBox2;
+
+	private: System::Windows::Forms::Button^ button1;
+
+	private: System::Windows::Forms::Button^ button2;
+
+	private: System::Windows::Forms::Button^ button3;
+
+	private: System::Windows::Forms::Button^ button4;
+
+	protected:
+
+
+
+	private:
+
+		/// <summary>
+
+		/// Required designer variable.
+
+		/// </summary>
+
+		System::ComponentModel::Container ^components;
+
+
+
+#pragma region Windows Form Designer generated code
+
+		/// <summary>
+
+		/// Required method for Designer support - do not modify
+
+		/// the contents of this method with the code editor.
+
+		/// </summary>
+
+		void InitializeComponent(void)
+
+		{
+
+			this->label1 = (gcnew System::Windows::Forms::Label());
+
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+
+			this->button1 = (gcnew System::Windows::Forms::Button());
+
+			this->button2 = (gcnew System::Windows::Forms::Button());
+
+			this->button3 = (gcnew System::Windows::Forms::Button());
+
+			this->button4 = (gcnew System::Windows::Forms::Button());
+
+			this->SuspendLayout();
+
+			// 
+
+			// label1
+
+			// 
+
+			this->label1->AutoSize = true;
+
+			this->label1->BackColor = System::Drawing::Color::White;
+
+			this->label1->Location = System::Drawing::Point(34, 18);
+
+			this->label1->Name = L"label1";
+
+			this->label1->Size = System::Drawing::Size(159, 16);
+
+			this->label1->TabIndex = 0;
+
+			this->label1->Text = L"Please input two numbers";
+
+			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
+
+			// 
+
+			// textBox1
+
+			// 
+
+			this->textBox1->Location = System::Drawing::Point(47, 48);
+
+			this->textBox1->Name = L"textBox1";
+
+			this->textBox1->Size = System::Drawing::Size(132, 22);
+
+			this->textBox1->TabIndex = 1;
+
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox1_TextChanged);
+
+			// 
+
+			// textBox2
+
+			// 
+
+			this->textBox2->Location = System::Drawing::Point(47, 76);
+
+			this->textBox2->Name = L"textBox2";
+
+			this->textBox2->Size = System::Drawing::Size(132, 22);
+
+			this->textBox2->TabIndex = 2;
+
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox2_TextChanged);
+
+			// 
+
+			// button1
+
+			// 
+
+			this->button1->Location = System::Drawing::Point(25, 116);
+
+			this->button1->Name = L"button1";
+
+			this->button1->Size = System::Drawing::Size(30, 30);
+
+			this->button1->TabIndex = 3;
+
+			this->button1->Text = L"+";
+
+			this->button1->UseVisualStyleBackColor = true;
+
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+
+			// 
+
+			// button2
+
+			// 
+
+			this->button2->Location = System::Drawing::Point(73, 116);
+
+			this->button2->Name = L"button2";
+
+			this->button2->Size = System::Drawing::Size(30, 30);
+
+			this->button2->TabIndex = 4;
+
+			this->button2->Text = L"-";
+
+			this->button2->UseVisualStyleBackColor = true;
+
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
+
+			// 
+
+			// button3
+
+			// 
+
+			this->button3->Location = System::Drawing::Point(118, 116);
+
+			this->button3->Name = L"button3";
+
+			this->button3->Size = System::Drawing::Size(30, 30);
+
+			this->button3->TabIndex = 5;
+
+			this->button3->Text = L"*";
+
+			this->button3->UseVisualStyleBackColor = true;
+
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
+
+			// 
+
+			// button4
+
+			// 
+
+			this->button4->Location = System::Drawing::Point(163, 116);
+
+			this->button4->Name = L"button4";
+
+			this->button4->Size = System::Drawing::Size(30, 30);
+
+			this->button4->TabIndex = 6;
+
+			this->button4->Text = L"/";
+
+			this->button4->UseVisualStyleBackColor = true;
+
+			this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
+
+			// 
+
+			// MyForm
+
+			// 
+
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+
+			this->BackColor = System::Drawing::Color::Lime;
+
+			this->ClientSize = System::Drawing::Size(232, 153);
+
+			this->Controls->Add(this->button4);
+
+			this->Controls->Add(this->button3);
+
+			this->Controls->Add(this->button2);
+
+			this->Controls->Add(this->button1);
+
+			this->Controls->Add(this->textBox2);
+
+			this->Controls->Add(this->textBox1);
+
+			this->Controls->Add(this->label1);
+
+			this->MaximizeBox = false;
+
+			this->MinimizeBox = false;
+
+			this->Name = L"MyForm";
+
+			this->Text = L"Calculator";
+
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+
+			this->ResumeLayout(false);
+
+			this->PerformLayout();
+
+
+
+		}
+
+#pragma endregion
+
+	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+
 	}
-	return 0;
+
+	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+
+	}
+
+
+
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+
 }
 
-/* The 'main' function of Win32 GUI programs: this is where execution starts */
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
-	WNDCLASSEX wc; /* A properties struct of our window */
-	HWND hwnd; /* A 'HANDLE', hence the H, or a pointer to our window */
-	MSG msg; /* A temporary location for all messages */
 
-	/* zero out the struct and set the stuff we want to modify */
-	memset(&wc,0,sizeof(wc));
-	wc.cbSize	 = sizeof(WNDCLASSEX);
-	wc.lpfnWndProc	 = WndProc; /* This is where we will send messages to */
-	wc.hInstance	 = hInstance;
-	wc.hCursor	 = LoadCursor(NULL, IDC_ARROW);
-	
-	/* White, COLOR_WINDOW is just a #define for a system color, try Ctrl+Clicking it */
-	wc.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
-	wc.lpszClassName = "WindowClass";
-	wc.hIcon	 = LoadIcon(NULL, IDI_APPLICATION); /* Load a standard icon */
-	wc.hIconSm	 = LoadIcon(NULL, IDI_APPLICATION); /* use the name "A" to use the project icon */
 
-	if(!RegisterClassEx(&wc)) {
-		MessageBox(NULL, "Window Registration Failed!","Error!",MB_ICONEXCLAMATION|MB_OK);
-		return 0;
-	}
+private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 
-	hwnd = CreateWindowEx(WS_EX_CLIENTEDGE,"WindowClass","Caption",WS_VISIBLE|WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, /* x */
-		CW_USEDEFAULT, /* y */
-		640, /* width */
-		480, /* height */
-		NULL,NULL,hInstance,NULL);
+}
 
-	if(hwnd == NULL) {
-		MessageBox(NULL, "Window Creation Failed!","Error!",MB_ICONEXCLAMATION|MB_OK);
-		return 0;
-	}
 
-	/*
-		This is the heart of our program where all input is processed and 
-		sent to WndProc. Note that GetMessage blocks code flow until it receives something, so
-		this loop will not produce unreasonably high CPU usage
-	*/
-	while(GetMessage(&msg, NULL, 0, 0) > 0) { /* If no error is received... */
-		TranslateMessage(&msg); /* Translate key codes to chars if present */
-		DispatchMessage(&msg); /* Send it to WndProc */
-	}
-	return msg.wParam;
+
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	int result = System::Convert::ToInt16(textBox1->Text) + System::Convert::ToInt16(textBox2->Text);
+
+	MessageBox::Show(System::Convert::ToString(result), "Result", MessageBoxButtons::OK,MessageBoxIcon::None);
+
+}
+
+
+
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	int result = System::Convert::ToInt16(textBox1->Text) - System::Convert::ToInt16(textBox2->Text);
+
+	MessageBox::Show(System::Convert::ToString(result), "Result", MessageBoxButtons::OK, MessageBoxIcon::None);
+
+}
+
+
+
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	int result = System::Convert::ToInt16(textBox1->Text) * System::Convert::ToInt16(textBox2->Text);
+
+	MessageBox::Show(System::Convert::ToString(result), "Result", MessageBoxButtons::OK, MessageBoxIcon::None);
+
+}
+
+
+
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	int result = System::Convert::ToInt16(textBox1->Text) / System::Convert::ToInt16(textBox2->Text);
+
+	MessageBox::Show(System::Convert::ToString(result), "Result", MessageBoxButtons::OK, MessageBoxIcon::None);
+
+}
+
+
+
+};
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+MyForm.cpp
+
+#include "MyForm.h"
+
+using namespace System;
+
+using namespace System::Windows::Forms;
+
+
+
+[STAThreadAttribute]
+
+void Main(array<String^>^ args) {
+
+    Application::EnableVisualStyles();
+
+    Application::SetCompatibleTextRenderingDefault(false);
+
+    Calculator::MyForm form;
+
+    Application::Run(% form);
+
 }
